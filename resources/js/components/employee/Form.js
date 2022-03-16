@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import employeeServices from "../../services/Employee";
 
-import React from 'react'
-
-
 
 export default function Form() {
 

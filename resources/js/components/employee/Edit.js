@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import employee from '../../services/Employee';
 import employeeServices from "../../services/Employee";
 
 
@@ -30,6 +31,7 @@ function Edit(props) {
 
       if (res.success) {
         console.log(res.data);
+
         const data = res.data
         setId(data.id)
         setNama_depan(data.nama_depan)
@@ -62,6 +64,27 @@ function Edit(props) {
     fetchDataRol();
   }, []);
 
+
+
+//  update
+
+  const updateEmployee = async () => {
+
+    const data = {
+      nama_depan, nama_belakang, tanggal_lahir, no_telephone, email, provinsi, city,
+      alamat, no_ktp, rekening_bank, posisi_saat_ini, no_rekBank, rol    
+    }
+    const res = await employeeServices.update(data);
+
+    if (res.success) {
+      alert(res.message)
+      
+    } else {
+      alert(res.message)
+    }
+  }
+
+
   return (
     <div>
       <h4>Edit </h4>
@@ -70,7 +93,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="firstName">Name Depan</label>
           <input type="text" className="form-control" placeholder="Name" value={nama_depan} 
-          // onChange={(event) => setNama_depan(event.target.value)}
+          onChange={(event) => setNama_depan(event.target.value)}
            />
         </div>
       </div>
@@ -79,7 +102,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="secondName">Name Belakang</label>
           <input type="text" className="form-control" placeholder="nama belakang" value={nama_belakang} 
-          // onChange={(event) => setNama_belakang(event.target.value)} 
+          onChange={(event) => setNama_belakang(event.target.value)} 
           />
 
         </div>
@@ -89,7 +112,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="tanggal_lahir">Tanggal Lahir </label>
           <input type="date" className="form-control" placeholder="DD/MM/YY" value={tanggal_lahir}
-          // onChange={(event) => setTanggal_lahir(event.target.value)} 
+          onChange={(event) => setTanggal_lahir(event.target.value)} 
           />
 
         </div>
@@ -99,7 +122,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="phone">No Telephon </label>
           <input type="text" className="form-control" placeholder="123467890" value={no_telephone} 
-          // onChange={(event) => setNo_telephone(event.target.value)} 
+          onChange={(event) => setNo_telephone(event.target.value)} 
           />
 
         </div>
@@ -109,7 +132,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="email">Email</label>
           <input type="email" className="form-control" placeholder="you@example.com" value={email} 
-          // onChange={(event) => setEmail(event.target.value)} 
+          onChange={(event) => setEmail(event.target.value)} 
           />
         </div>
       </div>
@@ -118,7 +141,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="provinsi">Provinsi</label>
           <input type="text" className="form-control" placeholder="provinsi anda" value={provinsi} 
-          // onChange={(event) => setProvinsi(event.target.value)} 
+          onChange={(event) => setProvinsi(event.target.value)} 
           />
         </div>
       </div>
@@ -140,7 +163,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="alamat">Alamat </label>
           <input type="text" className="form-control" placeholder="jl mangga" value={alamat} 
-          // onChange={(event) => setAlamat(event.target.value)} 
+          onChange={(event) => setAlamat(event.target.value)} 
           />
         </div>
       </div>
@@ -149,7 +172,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="no_ktp">No KTP </label>
           <input type="text" className="form-control" placeholder="123467890" value={no_ktp}
-          // onChange={(event) => setNo_ktp(event.target.value)} 
+          onChange={(event) => setNo_ktp(event.target.value)} 
           />
         </div>
       </div>
@@ -158,7 +181,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="rekening_bank">Rekening Bank </label>
           <input type="text" className="form-control" placeholder="nama bank anda" value={rekening_bank} 
-          // onChange={(event) => setRekening_bank(event.target.value)} 
+          onChange={(event) => setRekening_bank(event.target.value)} 
           />
         </div>
       </div>
@@ -167,7 +190,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="posisi_saat_ini">Posisi Saat Ini </label>
           <input type="text" className="form-control" placeholder="posisi anda saat ini" value={posisi_saat_ini} 
-          // onChange={(event) => setPosisi_saat_ini(event.target.value)} 
+          onChange={(event) => setPosisi_saat_ini(event.target.value)} 
           />
         </div>
       </div>
@@ -176,7 +199,7 @@ function Edit(props) {
         <div className="col-md-6 mb-3">
           <label for="no_rekening">No Rekening Bank </label>
           <input type="text" className="form-control" placeholder="23456789" value={no_rekBank} 
-          // onChange={(event) => setNo_rekBank(event.target.value)}  
+          onChange={(event) => setNo_rekBank(event.target.value)}  
           />
         </div>
       </div>
@@ -204,7 +227,7 @@ function Edit(props) {
       <div className="row">
         <div className="col-md-6 mb-3">
           <button className="btn btn-primary btn-block" type="submit"
-            onClick={() => saveEmployee()}>Next Save</button>
+            onClick={()=>updateEmployee()}>Next Save</button>
         </div>
       </div>
     </div>

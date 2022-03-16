@@ -16,10 +16,32 @@ function List(){
 
     fetchDataEmployee();
 
-  },[])
+  },[]);
+
+
+  const onclickDelete = async (i, id) => {
+    var yes = confirm("Anda yakin ingin mengahpus ?");
+
+    if (yes===true) {
+
+      const res = await employeeServices.delete(id);
+
+      if (res.succsess) {
+        alert(res.message)
+        const newList = listEmployee
+        newList.splice(i,1);
+        setListEmployee(newList);
+      }
+
+
+      
+    }
+  }
 
   return (
     <section>
+    <script src="../css/app.css"></script>
+
       <table className="table">
         <thead className="thead-dark">
           <tr>
@@ -43,10 +65,10 @@ function List(){
         <tbody>
 
           {
-            listEmployee.map((item) => {
+            listEmployee.map((item,i) => {
               return (
                 <tr>
-                <th scope="row">{item.id}</th>
+                <th scope="row">{i}</th>
                 <td>{item.nama_depan}</td>
                 <td>{item.nama_belakang}</td>
                 <td>{item.tanggal_lahir}</td>
@@ -62,7 +84,7 @@ function List(){
                 <td>{item.rol}</td>
                 <td>
                 <Link className="btn btn-outline-info" to={"/employee/edit/"+item.id}>Edit</Link>
-                  <a href="#" className="btn btn-danger"> Delete </a>
+                  <a href="#" className="btn btn-danger" onClick={()=>onclickDelete(i,item.id)}> Delete </a>
                 </td>
                 </tr>
               )
