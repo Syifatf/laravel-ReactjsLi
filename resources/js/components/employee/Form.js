@@ -133,17 +133,30 @@ export default function Form() {
 
       <div className="row">
         <div className="col-md-6 mb-3">
-          <label for="rekening_bank">Rekening Bank </label>
-          <input type="text" className="form-control" placeholder="nama bank anda"
-            onChange={(event) => setRekening_bank(event.target.value)} />
+          <label for="Rekening_bank">Posisi Saat Ini </label>
+          <select id="inputStateCity" className="form-control"
+            onChange={(event) => setRekening_bank(event.target.value)} >
+            <option selected>Choose ...</option>
+            <option value="Bank BNI">Bank BNI</option>
+            <option value="Bank Mandiri">Bank Mandiri</option>
+            <option value="Bank Syariah Mandiri">Bank Syariah Mandiri</option>
+            <option value="Bank BCA">Bank BCA</option>
+            <option value="lain-lain">Lain Lain</option>
+          </select>
         </div>
       </div>
 
       <div className="row">
         <div className="col-md-6 mb-3">
           <label for="posisi_saat_ini">Posisi Saat Ini </label>
-          <input type="text" className="form-control" placeholder="posisi anda saat ini"
-            onChange={(event) => setPosisi_saat_ini(event.target.value)} />
+          <select id="inputStateCity" className="form-control"
+            onChange={(event) => setPosisi_saat_ini(event.target.value)} >
+            <option selected>Choose ...</option>
+            <option value="Manager">Manager</option>
+            <option value="Supervisor">Supervisor</option>
+            <option value="Staff">Staff</option>
+            <option value="lain-lain">Lain Lain</option>
+          </select>
         </div>
       </div>
 
@@ -152,6 +165,7 @@ export default function Form() {
           <label for="no_rekening">No Rekening Bank </label>
           <input type="text" className="form-control" placeholder="23456789"
             onChange={(event) => setNo_rekBank(event.target.value)} />
+
         </div>
       </div>
 
